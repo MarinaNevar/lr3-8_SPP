@@ -30,6 +30,7 @@ public class AuthController {
         if (userRepository.findByName(user.getName()) == null) {
             userRepository.save(user);
             httpSession.setAttribute("currentUserName", user.getName());
+            httpSession.setAttribute("currentUserAuthorityID", user.getAuthorityId());
             return 200;
         } else {
             return 422;
@@ -42,6 +43,7 @@ public class AuthController {
         User dbUser = userRepository.findByName(user.getName());
         if (dbUser != null && Objects.equals(user.getPassword(), dbUser.getPassword())) {
             httpSession.setAttribute("currentUserName", user.getName());
+            httpSession.setAttribute("currentUserAuthorityID", user.getAuthorityId());
             return 200;
         } else {
             return 404;

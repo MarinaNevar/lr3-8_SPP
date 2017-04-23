@@ -22,17 +22,17 @@ public class Resume {
     @Column(name = "ID")
     private long id;
 
-    @Column
-    private long owner_id;
+    @Column(name = "owner_id")
+    private long ownerId;
 
     @Column
     private String title;
 
-    @Column
-    private String exp_json;
+    @Column(name = "exp_json")
+    private String expJson;
 
-    @Column
-    private String skills_json;
+    @Column(name = "skills_json")
+    private String skillsJson;
 
     @Column
     private String about;

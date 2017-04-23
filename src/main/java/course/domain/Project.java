@@ -22,12 +22,12 @@ public class Project {
     @Column(name = "ID")
     private long id;
 
-    @Column
-    private long owner_id;
+    @Column(name = "owner_id")
+    private long ownerId;
 
     @Column
     private String title;
 
-    @Column
-    private String about_json;
+    @Column(name = "about_json")
+    private String aboutJson;
 }

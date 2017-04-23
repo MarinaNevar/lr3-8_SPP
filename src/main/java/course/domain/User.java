@@ -27,4 +27,13 @@ public class User {
 
     @Column(name = "password", unique = true)
     private String password;
+
+    @Column(name = "authority_id")
+    private long authorityId;
+
+    public User(String name, String password) {
+        this.name = name;
+        this.password = password;
+        this.authorityId = 1;
+    }
 }

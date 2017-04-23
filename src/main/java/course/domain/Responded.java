@@ -22,16 +22,16 @@ public class Responded {
     @Column(name = "ID")
     private long id;
 
-    @Column
-    private long project_id;
+    @Column(name = "project_id")
+    private long projectId;
 
-    @Column
-    private long vacancy_id;
+    @Column(name = "vacancy_id")
+    private long vacancyId;
 
-    @Column
-    private long user_id;
+    @Column(name = "user_id")
+    private long userId;
 
-    @Column
-    private long resume_id;
+    @Column(name = "resume_id")
+    private long resumeId;
 
 }
