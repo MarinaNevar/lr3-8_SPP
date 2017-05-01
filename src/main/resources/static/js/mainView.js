@@ -5,13 +5,17 @@ let App = angular.module('mainView', []);
 
 App.controller('AuthController',['$scope','$http', function ($scope, $http) {
     let vm = $scope;
+    vm.user = null;
+    vm.isLoggined = false;
+    checkUser();
 
     vm.registerUser = function () {
-        user = getRegUser();
-        if (user.name !='' && user.password != '') {
-            $http.post('http://localhost:8080/registration', getRegUser()).then(function (response) {
+        let user = getRegUser();
+        if (user.name !=='' && user.password !== '') {
+            $http.post('http://localhost:8080/registration', user).then(function (response) {
                 if (response.data === 200) {
-                    window.location = "http://localhost:8080/main.html";
+                    vm.isLoggined = !!putUserFromBackToLS();
+                    //window.location = "http://localhost:8080/main.html";
                 } else {
                     showError('regError', 'User with this name already exist.');
                 }
@@ -22,16 +26,18 @@ App.controller('AuthController',['$scope','$http', function ($scope, $http) {
     };
 
     vm.login = function () {
-        if (getUser()) {
-            $http.post('http://localhost:8080/login', getUser()).then(function (response) {
+        let user = getUser();
+        if (user.name !=='' && user.password !== '') {
+            $http.post('http://localhost:8080/login', user).then(function (response) {
                 if(response.data === 200) {
-                    window.location.href = "http://localhost:8080/blog.html";
+                    checkUser();
+                    //window.location.href = "http://localhost:8080/main.html";
                 } else {
-                    alert("we can't find user with this name");
+                    showError('loginError', 'Invalid credentials.');
                 }
             });
         } else {
-            alert("Enter username");
+            showError('loginError', 'Fill in the fields.');
         }
     };
 
@@ -55,6 +61,34 @@ App.controller('AuthController',['$scope','$http', function ($scope, $http) {
 
     function showError(id, msg) {
         element = document.getElementById(id);
-        element.innerHTML = '<div class="alert alert-danger"><strong>Danger!</strong> ' + msg + '</div>';
+        element.innerHTML = '<div class="alert alert-danger">' + msg + '</div>';
+    }
+
+    function checkUser() {
+        let user = window.localStorage.getItem('user');
+        $http.get('http://localhost:8080/user/get').then((response) => {
+            if (user) {
+                if (user === JSON.stringify(response.data)) {
+                    vm.user = response.data;
+                    vm.isLoggined = true;
+                } else {
+                    window.localStorage.removeItem('user');
+                }
+            } else {
+                if (response.data) {
+                    window.localStorage.setItem('user', JSON.stringify(response.data));
+                    vm.user = response.data;
+                    vm.isLoggined = true;
+                }
+            }
+        });
+    }
+    vm.logout = function () {
+        $http.get('http://localhost:8080/logOut').then(function () {
+            window.localStorage.removeItem('user');
+            vm.isLoggined = false;
+            vm.user = null;
+        });
+
     }
 }]);
