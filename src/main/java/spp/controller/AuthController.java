@@ -5,7 +5,9 @@ import spp.domain.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import spp.dto.UserDto;
 import spp.service.AuthService;
+import spp.service.UserService;
 
 import javax.servlet.http.HttpSession;
 import java.util.Objects;
@@ -19,10 +21,12 @@ import java.util.Objects;
 public class AuthController {
 
     private final AuthService authService;
+    private final UserService userService;
 
     @Autowired
-    public AuthController(AuthService authService) {
+    public AuthController(AuthService authService, UserService userService) {
         this.authService = authService;
+        this.userService = userService;
     }
 
     @RequestMapping(value = "/registration", method = RequestMethod.POST)
@@ -33,5 +37,10 @@ public class AuthController {
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     public @ResponseBody int loginUser(HttpSession httpSession, @RequestBody User user) {
         return authService.validateUser(httpSession, user);
+    }
+
+    @RequestMapping(value = "/user/get", method = RequestMethod.GET)
+    public @ResponseBody UserDto loginUser(HttpSession httpSession) {
+        return userService.getCurrentUser(httpSession);
     }
 }
