@@ -28,6 +28,7 @@ public class AuthService {
 
     public int createUser(HttpSession httpSession, User user) {
         if (userRepository.findByName(user.getName()) == null) {
+            user.setAuthorityId(1);
             User savedUser = userRepository.save(user);
             httpSessionService.setDataToSession(httpSession, new SessionDTO("currentUserName", savedUser.getName()));
             httpSessionService.setDataToSession(httpSession, new SessionDTO("currentUserAuthorityID", savedUser.getAuthorityId()));
