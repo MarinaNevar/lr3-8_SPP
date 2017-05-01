@@ -1,6 +1,5 @@
 package spp.controller;
 
-import spp.dao.UserRepository;
 import spp.domain.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -10,7 +9,6 @@ import spp.service.AuthService;
 import spp.service.UserService;
 
 import javax.servlet.http.HttpSession;
-import java.util.Objects;
 
 
 /**
@@ -40,7 +38,7 @@ public class AuthController {
     }
 
     @RequestMapping(value = "/user/get", method = RequestMethod.GET)
-    public @ResponseBody UserDto loginUser(HttpSession httpSession) {
+    public @ResponseBody UserDto getCurrentUser(HttpSession httpSession) {
         return userService.getCurrentUser(httpSession);
     }
 }
