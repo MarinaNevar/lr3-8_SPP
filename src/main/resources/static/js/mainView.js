@@ -7,16 +7,17 @@ App.controller('AuthController',['$scope','$http', function ($scope, $http) {
     let vm = $scope;
 
     vm.registerUser = function () {
-        if (getUser()) {
-            $http.post('http://localhost:8080/registration', getUser()).then(function (response) {
+        user = getRegUser();
+        if (user.name !='' && user.password != '') {
+            $http.post('http://localhost:8080/registration', getRegUser()).then(function (response) {
                 if (response.data === 200) {
-                    window.location = "http://localhost:8080/blog.html";
+                    window.location = "http://localhost:8080/main.html";
                 } else {
-                    alert("user with this name already exist");
+                    showError('regError', 'User with this name already exist.');
                 }
             });
         } else {
-            alert("Enter username");
+            showError('regError', 'Fill in the fields.');
         }
     };
 
@@ -41,8 +42,19 @@ App.controller('AuthController',['$scope','$http', function ($scope, $http) {
         }
     }
 
+    function getRegUser() {
+        return {
+            name: getInputValue('userRegName'),
+            password: getInputValue('userRegPassword')
+        }
+    }
 
     function getInputValue(input) {
         return document.getElementById(input).value
+    }
+
+    function showError(id, msg) {
+        element = document.getElementById(id);
+        element.innerHTML = '<div class="alert alert-danger"><strong>Danger!</strong> ' + msg + '</div>';
     }
 }]);
