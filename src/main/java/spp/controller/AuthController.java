@@ -41,4 +41,10 @@ public class AuthController {
     public @ResponseBody UserDto getCurrentUser(HttpSession httpSession) {
         return userService.getCurrentUser(httpSession);
     }
+
+    @RequestMapping(value = "/logOut", method = RequestMethod.GET)
+    public void logout(HttpSession httpSession) {
+        httpSession.removeAttribute("currentUserName");
+        httpSession.removeAttribute("currentUserAuthorityID");
+    }
 }
