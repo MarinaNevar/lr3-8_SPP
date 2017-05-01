@@ -5,6 +5,7 @@ import spp.domain.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import spp.service.AuthService;
 
 import javax.servlet.http.HttpSession;
 import java.util.Objects;
@@ -17,36 +18,20 @@ import java.util.Objects;
 @RequestMapping("/")
 public class AuthController {
 
-    @Autowired
-    private UserRepository userRepository;
+    private final AuthService authService;
 
     @Autowired
-    public AuthController(UserRepository userRepository) {
-        this.userRepository = userRepository;
+    public AuthController(AuthService authService) {
+        this.authService = authService;
     }
 
     @RequestMapping(value = "/registration", method = RequestMethod.POST)
     public @ResponseBody int createUser(HttpSession httpSession, @RequestBody User user) {
-        if (userRepository.findByName(user.getName()) == null) {
-            userRepository.save(user);
-            httpSession.setAttribute("currentUserName", user.getName());
-            httpSession.setAttribute("currentUserAuthorityID", user.getAuthorityId());
-            return 200;
-        } else {
-            return 422;
-        }
-
+        return authService.createUser(httpSession, user);
     }
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     public @ResponseBody int loginUser(HttpSession httpSession, @RequestBody User user) {
-        User dbUser = userRepository.findByName(user.getName());
-        if (dbUser != null && Objects.equals(user.getPassword(), dbUser.getPassword())) {
-            httpSession.setAttribute("currentUserName", user.getName());
-            httpSession.setAttribute("currentUserAuthorityID", user.getAuthorityId());
-            return 200;
-        } else {
-            return 404;
-        }
+        return authService.validateUser(httpSession, user);
     }
 }
