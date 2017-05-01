@@ -43,8 +43,9 @@ public class AuthController {
     }
 
     @RequestMapping(value = "/logOut", method = RequestMethod.GET)
-    public void logout(HttpSession httpSession) {
+    public @ResponseBody int logout(HttpSession httpSession) {
         httpSession.removeAttribute("currentUserName");
         httpSession.removeAttribute("currentUserAuthorityID");
+        return 200;
     }
 }
