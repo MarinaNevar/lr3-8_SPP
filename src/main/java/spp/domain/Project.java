@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.Date;
 
 /**
  * Created by admin on 23.04.2017.
@@ -30,4 +31,7 @@ public class Project {
 
     @Column(name = "about_json")
     private String aboutJson;
+
+    @Column(name = "creation_date")
+    private Date creationDate;
 }

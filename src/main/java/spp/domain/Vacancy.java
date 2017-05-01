@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.Date;
 
 /**
  * Created by admin on 23.04.2017.
@@ -33,4 +34,7 @@ public class Vacancy {
 
     @Column(name = "project_id")
     private long projectId;
+
+    @Column(name = "creation_date")
+    private Date creationDate;
 }

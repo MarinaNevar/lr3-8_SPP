@@ -30,15 +30,4 @@ public class User {
 
     @Column(name = "authority_id")
     private long authorityId;
-
-    public User(String name, String password) {
-        this.name = name;
-        this.password = password;
-        this.authorityId = 1;
-    }
-
-    public User(String name, Long authorityId) {
-        this.name = name;
-        this.authorityId = authorityId;
-    }
 }
