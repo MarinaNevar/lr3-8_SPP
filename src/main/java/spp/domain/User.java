@@ -36,4 +36,9 @@ public class User {
         this.password = password;
         this.authorityId = 1;
     }
+
+    public User(String name, Long authorityId) {
+        this.name = name;
+        this.authorityId = authorityId;
+    }
 }
