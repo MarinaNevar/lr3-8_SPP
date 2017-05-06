@@ -1,4 +1,4 @@
-package spp.domain;
+package spp.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

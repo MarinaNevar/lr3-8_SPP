@@ -1,6 +1,6 @@
-package spp.dao;
+package spp.repository;
 
-import spp.domain.Authority;
+import spp.entity.Authority;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 /**

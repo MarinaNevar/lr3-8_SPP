@@ -2,8 +2,8 @@ package spp.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import spp.dao.VacancyRepository;
-import spp.domain.Vacancy;
+import spp.repository.VacancyRepository;
+import spp.entity.Vacancy;
 
 import java.util.List;
 

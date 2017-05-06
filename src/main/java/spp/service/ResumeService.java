@@ -2,8 +2,8 @@ package spp.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import spp.dao.ResumeRepository;
-import spp.domain.Resume;
+import spp.repository.ResumeRepository;
+import spp.entity.Resume;
 
 import java.util.List;
 

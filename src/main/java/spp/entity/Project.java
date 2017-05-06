@@ -1,4 +1,4 @@
-package spp.domain;
+package spp.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.Date;
 
 /**
  * Created by admin on 23.04.2017.
@@ -15,23 +16,22 @@ import javax.persistence.*;
 @NoArgsConstructor
 @Getter
 @Setter
-public class Responded {
+public class Project {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "ID")
     private long id;
 
-    @Column(name = "project_id")
-    private long projectId;
+    @Column(name = "owner_id")
+    private long ownerId;
 
-    @Column(name = "vacancy_id")
-    private long vacancyId;
+    @Column
+    private String title;
 
-    @Column(name = "user_id")
-    private long userId;
+    @Column(name = "about_json")
+    private String aboutJson;
 
-    @Column(name = "resume_id")
-    private long resumeId;
-
+    @Column(name = "creation_date")
+    private Date creationDate;
 }

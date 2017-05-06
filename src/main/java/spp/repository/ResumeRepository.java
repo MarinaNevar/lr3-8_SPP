@@ -1,6 +1,6 @@
-package spp.dao;
+package spp.repository;
 
-import spp.domain.Resume;
+import spp.entity.Resume;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;

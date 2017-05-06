@@ -1,4 +1,4 @@
-package spp.domain;
+package spp.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -6,17 +6,18 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Date;
 
 /**
  * Created by admin on 23.04.2017.
  */
 @Entity
-@AllArgsConstructor
-@NoArgsConstructor
 @Getter
 @Setter
-public class Project {
+@AllArgsConstructor
+@NoArgsConstructor
+public class Resume implements Serializable{
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -29,8 +30,14 @@ public class Project {
     @Column
     private String title;
 
-    @Column(name = "about_json")
-    private String aboutJson;
+    @Column(name = "exp_json")
+    private String expJson;
+
+    @Column(name = "skills_json")
+    private String skillsJson;
+
+    @Column
+    private String about;
 
     @Column(name = "creation_date")
     private Date creationDate;

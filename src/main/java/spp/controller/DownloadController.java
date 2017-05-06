@@ -1,11 +1,12 @@
 package spp.controller;
 
+
 import org.springframework.core.io.InputStreamResource;
 import org.springframework.core.io.Resource;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 import spp.dto.UserDto;
 
 import javax.servlet.http.HttpServletResponse;
@@ -14,12 +15,12 @@ import java.io.*;
 /**
  * Created by admin on 01.05.2017.
  */
-@Controller
+
 @RequestMapping("/download")
+@RestController
 public class DownloadController {
 
     private static final String APPLICATION_PDF = "application/pdf";
-
 
     @RequestMapping(value = "/test", method = RequestMethod.GET, produces = APPLICATION_PDF)
     public @ResponseBody

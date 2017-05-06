@@ -2,8 +2,6 @@ package spp.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import spp.dao.UserRepository;
-import spp.domain.User;
 import spp.dto.UserDto;
 
 import javax.servlet.http.HttpSession;

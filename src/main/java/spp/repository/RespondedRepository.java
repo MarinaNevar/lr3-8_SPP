@@ -1,6 +1,6 @@
-package spp.dao;
+package spp.repository;
 
-import spp.domain.Responded;
+import spp.entity.Responded;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 /**

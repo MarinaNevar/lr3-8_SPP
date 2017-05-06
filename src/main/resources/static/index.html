@@ -2,35 +2,13 @@
       xmlns:th="http://www.thymeleaf.org">
 <html>
 <head>
-    <title>Login</title>
-    <link rel="stylesheet" href="css/mainStyle.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
-    <script src="js/mainView.js"></script>
+    <title>Redirect...</title>
+    <script>
+        window.location.href = "http://localhost:8080/swagger-ui.html";
+    </script>
 </head>
 <meta charset="utf-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<body ng-app="mainView">
-<div class="container" ng-controller="AuthController">
-    <div class="row">
-        <div class="col-md-offset-5 col-md-4">
-            <div class="form-login">
-                <h4>Sample blog</h4>
-                <input type="text" id="userName" class="form-control input-sm chat-input" placeholder="username" />
-                <input type="text" id="userPassword" class="form-control input-sm chat-input" placeholder="password" />
-                </br>
-                <div class="wrapper">
-                    <span class="group-btn">
-                        <a href="#" class="btn btn-primary" ng-click="login()">login <i class="fa fa-sign-in"></i></a>
-                        <a href="#" class="btn btn-primary" ng-click="registerUser()">Create account <i class="fa fa-sign-in"></i></a>
-                    </span>
-                </div>
-            </div>
-
-        </div>
-    </div>
-</div>
+<body>
 </body>
 </html>

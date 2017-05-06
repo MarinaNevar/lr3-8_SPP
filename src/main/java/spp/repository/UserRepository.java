@@ -1,7 +1,7 @@
-package spp.dao;
+package spp.repository;
 
 
-import spp.domain.User;
+import spp.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
