@@ -11,4 +11,6 @@ import java.util.List;
 public interface ResumeRepository extends JpaRepository<Resume, Long> {
 
     List<Resume> findAllByOrderByCreationDateAsc();
+
+    List<Resume> findAllByOwnerId(Long id);
 }

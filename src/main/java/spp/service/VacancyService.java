@@ -27,4 +27,12 @@ public class VacancyService {
     public List<Vacancy> getFiveLast() {
         return vacancyRepository.findAllByOrderByCreationDateAsc();
     }
+
+    public List<Vacancy> getByOwnerId(Long id) {
+        return vacancyRepository.findAllByOwnerId(id);
+    }
+
+    public Vacancy getById(Long id) {
+        return vacancyRepository.findOne(id);
+    }
 }
