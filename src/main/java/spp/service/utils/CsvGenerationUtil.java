@@ -2,6 +2,7 @@ package spp.service.utils;
 
 
 import au.com.bytecode.opencsv.CSVWriter;
+import spp.dto.download.VacancyDownloadDto;
 import spp.entity.Vacancy;
 
 import java.io.ByteArrayOutputStream;
@@ -12,8 +13,8 @@ import java.util.*;
 
 public class CsvGenerationUtil {
 
-    public static ByteArrayOutputStream generateVacanciesInCSV(Vacancy vacancy) throws IOException {
-        String[] fileHeader = {"N", "CreationDate", "Title", "Text"};
+    public static ByteArrayOutputStream generateVacanciesInCSV(VacancyDownloadDto vacancy) throws IOException {
+        String[] fileHeader = null;
         ByteArrayOutputStream stream = new ByteArrayOutputStream();
 
         OutputStreamWriter os = new OutputStreamWriter(stream, Charset.forName("cp1251"));
@@ -21,13 +22,17 @@ public class CsvGenerationUtil {
         writer.writeNext(fileHeader);
         List<String[]> vacanciesInString = new ArrayList<>();
         vacanciesInString.add(new String[]{
-                Long.toString(vacancy.getId()),
-                vacancy.getCreationDate().toString(),
+                vacancy.getOwnerName(),
                 vacancy.getTitle(),
-                vacancy.getAboutJson()});
-
+                vacancy.getAbout(),
+                vacancy.getProjectTitle(),
+                vacancy.getCreationDate().toString(),
+                });
         writer.writeAll(vacanciesInString);
         writer.close();
         return stream;
     }
+
+
+
 }
