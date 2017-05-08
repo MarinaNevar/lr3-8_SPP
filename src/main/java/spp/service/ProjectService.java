@@ -23,4 +23,16 @@ public class ProjectService {
     public Project getById(Long id) {
         return projectRepository.getOne(id);
     }
+
+    public List<Project> getAllByOwnerId(Long id) {
+        return projectRepository.findAllByOwnerId(id);
+    }
+
+    public Project save(Project project) {
+        return projectRepository.save(project);
+    }
+
+    public void delete(Long id) {
+       projectRepository.delete(id);
+    }
 }

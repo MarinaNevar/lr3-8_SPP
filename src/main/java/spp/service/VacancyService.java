@@ -7,6 +7,8 @@ import spp.entity.Vacancy;
 
 import java.util.List;
 
+import static com.google.common.primitives.UnsignedInts.min;
+
 /**
  * Created by admin on 01.05.2017.
  */
@@ -25,7 +27,8 @@ public class VacancyService {
     }
 
     public List<Vacancy> getFiveLast() {
-        return vacancyRepository.findAllByOrderByCreationDateAsc();
+        List<Vacancy> vacancies = vacancyRepository.findAllByOrderByCreationDateAsc();
+        return vacancies.subList(0, min(5, vacancies.size() - 1));
     }
 
     public List<Vacancy> getByOwnerId(Long id) {
@@ -34,5 +37,13 @@ public class VacancyService {
 
     public Vacancy getById(Long id) {
         return vacancyRepository.findOne(id);
+    }
+
+    public Vacancy save(Vacancy project) {
+        return vacancyRepository.save(project);
+    }
+
+    public void delete(Long id) {
+        vacancyRepository.delete(id);
     }
 }
