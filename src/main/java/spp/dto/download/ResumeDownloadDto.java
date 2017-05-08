@@ -33,4 +33,16 @@ public class ResumeDownloadDto {
         this.expJson = resume.getExpJson();
         this.skillsJson = resume.getSkillsJson();
     }
+
+    @Override
+    public String toString() {
+        return "ResumeDownloadDto{" +
+                "title='" + title + '\'' +
+                ", creationDate=" + creationDate +
+                ", ownerName='" + ownerName + '\'' +
+                ", about='" + about + '\'' +
+                ", expJson='" + expJson + '\'' +
+                ", skillsJson='" + skillsJson + '\'' +
+                '}';
+    }
 }
