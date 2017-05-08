@@ -1,14 +1,11 @@
 package spp.controller;
 
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.InputStreamResource;
 import org.springframework.core.io.Resource;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
-import spp.dto.UserDto;
 import spp.service.download.dto.generator.DownloadDtoGenerator;
-
-import javax.servlet.http.HttpServletResponse;
 import java.io.*;
 
 import static spp.service.utils.CsvGenerationUtil.*;
@@ -22,63 +19,40 @@ import static spp.service.utils.CsvGenerationUtil.*;
 public class DownloadController {
 
     private static final String APPLICATION_PDF = "application/pdf";
+    public final static String TEXT_CSV = "text/csv";
 
     @Autowired
     private DownloadDtoGenerator generator;
 
-    @RequestMapping(value = "/test", method = RequestMethod.GET, produces = APPLICATION_PDF)
+    @RequestMapping(value = "/csv/vacancy/{id}", method = RequestMethod.GET,  produces = TEXT_CSV)
     public @ResponseBody
-    Resource downloadC(HttpServletResponse response) throws IOException {
-
-        ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        ObjectOutputStream oos = new ObjectOutputStream(baos);
-
-
-        UserDto userDto = new UserDto("test", 1L);
-        oos.writeObject(userDto);
-
-        oos.flush();
-        oos.close();
-
-        InputStream is = new ByteArrayInputStream(baos.toByteArray());
-        response.setContentType(String.valueOf(APPLICATION_PDF));
-        response.setHeader("Content-Disposition", "inline; filename=" + userDto.getName());
-        return new InputStreamResource(is);
+    byte[] downloadCsvVacancyById(@PathVariable("id") Long id) throws IOException {
+        return generateVacanciesInCSV
+                (generator.getVacancyDownloadDtoById(id))
+                .toByteArray();
     }
 
-    @RequestMapping(value = "/csv/vacancy/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/csv/user/{id}", method = RequestMethod.GET,  produces = TEXT_CSV)
     public @ResponseBody
-    Resource downloadCsvVacancyById(@PathVariable("id") Long id) throws IOException {
-        return new InputStreamResource(
-                new ByteArrayInputStream(generateVacanciesInCSV(generator
-                        .getVacancyDownloadDtoById(id)
-                ).toByteArray()));
-    }
-
-    @RequestMapping(value = "/csv/user/{id}", method = RequestMethod.GET)
-    public @ResponseBody
-    Resource downloadCsvUserById(@PathVariable("id") Long id) throws IOException {
-        return new InputStreamResource(
-                new ByteArrayInputStream(generateUserInCSV(generator
+    byte[] downloadCsvUserById(@PathVariable("id") Long id) throws IOException {
+        return generateUserInCSV(generator
                         .getUserDownloadDtoById(id)
-                ).toByteArray()));
+                ).toByteArray();
     }
 
-    @RequestMapping(value = "/csv/project/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/csv/project/{id}", method = RequestMethod.GET,  produces = TEXT_CSV)
     public @ResponseBody
-    Resource downloadCsvProjectById(@PathVariable("id") Long id) throws IOException {
-        return new InputStreamResource(
-                new ByteArrayInputStream(generateProjectInCSV(generator
+    byte[] downloadCsvProjectById(@PathVariable("id") Long id) throws IOException {
+        return generateProjectInCSV(generator
                         .getProjectDownloadDtoById(id)
-                ).toByteArray()));
+                ).toByteArray();
     }
 
     @RequestMapping(value = "/csv/resume/{id}", method = RequestMethod.GET)
     public @ResponseBody
-    Resource downloadCsvResumeById(@PathVariable("id") Long id) throws IOException {
-        return new InputStreamResource(
-                new ByteArrayInputStream(generateResumeInCSV(generator
+    byte[] downloadCsvResumeById(@PathVariable("id") Long id) throws IOException {
+        return generateResumeInCSV(generator
                         .getResumeDownloadDtoById(id)
-                ).toByteArray()));
+                ).toByteArray();
     }
 }
