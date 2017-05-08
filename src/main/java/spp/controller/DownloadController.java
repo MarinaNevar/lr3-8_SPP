@@ -47,7 +47,22 @@ public class DownloadController {
     }
 
     @RequestMapping(value = "/csv/vacancy/{id}", method = RequestMethod.GET)
-    public ByteArrayOutputStream downloadCsvVacancyById(@PathVariable("id") Long id) throws IOException {
+    public @ResponseBody ByteArrayOutputStream downloadCsvVacancyById(@PathVariable("id") Long id) throws IOException {
         return generateVacanciesInCSV(generator.getVacancyDownloadDtoById(id));
+    }
+
+    @RequestMapping(value = "/csv/user/{id}", method = RequestMethod.GET)
+    public @ResponseBody ByteArrayOutputStream downloadCsvUserById(@PathVariable("id") Long id) throws IOException {
+        return generateUserInCSV(generator.getUserDownloadDtoById(id));
+    }
+
+    @RequestMapping(value = "/csv/project/{id}", method = RequestMethod.GET)
+    public @ResponseBody ByteArrayOutputStream downloadCsvProjectById(@PathVariable("id") Long id) throws IOException {
+        return generateProjectInCSV(generator.getProjectDownloadDtoById(id));
+    }
+
+    @RequestMapping(value = "/csv/resume/{id}", method = RequestMethod.GET)
+    public @ResponseBody ByteArrayOutputStream downloadCsvResumeById(@PathVariable("id") Long id) throws IOException {
+        return generateResumeInCSV(generator.getResumeDownloadDtoById(id));
     }
 }
