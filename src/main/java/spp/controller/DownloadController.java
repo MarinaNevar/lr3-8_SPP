@@ -47,22 +47,38 @@ public class DownloadController {
     }
 
     @RequestMapping(value = "/csv/vacancy/{id}", method = RequestMethod.GET)
-    public @ResponseBody ByteArrayOutputStream downloadCsvVacancyById(@PathVariable("id") Long id) throws IOException {
-        return generateVacanciesInCSV(generator.getVacancyDownloadDtoById(id));
+    public @ResponseBody
+    Resource downloadCsvVacancyById(@PathVariable("id") Long id) throws IOException {
+        return new InputStreamResource(
+                new ByteArrayInputStream(generateVacanciesInCSV(generator
+                        .getVacancyDownloadDtoById(id)
+                ).toByteArray()));
     }
 
     @RequestMapping(value = "/csv/user/{id}", method = RequestMethod.GET)
-    public @ResponseBody ByteArrayOutputStream downloadCsvUserById(@PathVariable("id") Long id) throws IOException {
-        return generateUserInCSV(generator.getUserDownloadDtoById(id));
+    public @ResponseBody
+    Resource downloadCsvUserById(@PathVariable("id") Long id) throws IOException {
+        return new InputStreamResource(
+                new ByteArrayInputStream(generateUserInCSV(generator
+                        .getUserDownloadDtoById(id)
+                ).toByteArray()));
     }
 
     @RequestMapping(value = "/csv/project/{id}", method = RequestMethod.GET)
-    public @ResponseBody ByteArrayOutputStream downloadCsvProjectById(@PathVariable("id") Long id) throws IOException {
-        return generateProjectInCSV(generator.getProjectDownloadDtoById(id));
+    public @ResponseBody
+    Resource downloadCsvProjectById(@PathVariable("id") Long id) throws IOException {
+        return new InputStreamResource(
+                new ByteArrayInputStream(generateProjectInCSV(generator
+                        .getProjectDownloadDtoById(id)
+                ).toByteArray()));
     }
 
     @RequestMapping(value = "/csv/resume/{id}", method = RequestMethod.GET)
-    public @ResponseBody ByteArrayOutputStream downloadCsvResumeById(@PathVariable("id") Long id) throws IOException {
-        return generateResumeInCSV(generator.getResumeDownloadDtoById(id));
+    public @ResponseBody
+    Resource downloadCsvResumeById(@PathVariable("id") Long id) throws IOException {
+        return new InputStreamResource(
+                new ByteArrayInputStream(generateResumeInCSV(generator
+                        .getResumeDownloadDtoById(id)
+                ).toByteArray()));
     }
 }
