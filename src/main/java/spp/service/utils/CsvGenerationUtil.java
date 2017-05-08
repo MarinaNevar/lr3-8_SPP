@@ -17,7 +17,7 @@ import java.util.Optional;
 public class CsvGenerationUtil {
 
     public static ByteArrayOutputStream generateVacanciesInCSV(VacancyDownloadDto object) throws IOException {
-        String[] fileHeader = null;
+        String[] fileHeader = {"OwnerName", "Title", "About", "ProjectTitle","CreationDate"};
         ByteArrayOutputStream stream = new ByteArrayOutputStream();
 
         OutputStreamWriter os = new OutputStreamWriter(stream, Charset.forName("cp1251"));
@@ -37,7 +37,7 @@ public class CsvGenerationUtil {
     }
 
     public static ByteArrayOutputStream generateResumeInCSV(ResumeDownloadDto object) throws IOException {
-        String[] fileHeader = null;
+        String[] fileHeader = {"Title", "CreationDate", "OwnerName", "About","ExpJson","SkillsJson"};
         ByteArrayOutputStream stream = new ByteArrayOutputStream();
 
         OutputStreamWriter os = new OutputStreamWriter(stream, Charset.forName("cp1251"));
@@ -58,7 +58,7 @@ public class CsvGenerationUtil {
     }
 
     public static ByteArrayOutputStream generateProjectInCSV(ProjectDownloadDto object) throws IOException {
-        String[] fileHeader = null;
+        String[] fileHeader = {"Title", "CreationDate", "OwnerName", "About","Vacancies"};
         ByteArrayOutputStream stream = new ByteArrayOutputStream();
 
         OutputStreamWriter os = new OutputStreamWriter(stream, Charset.forName("cp1251"));
@@ -86,16 +86,20 @@ public class CsvGenerationUtil {
     }
 
     public static ByteArrayOutputStream generateUserInCSV(UserDownloadDto object) throws IOException {
-        String[] fileHeader = null;
+        String[] fileHeader = {"UserName", "resumes"};
         ByteArrayOutputStream stream = new ByteArrayOutputStream();
 
         OutputStreamWriter os = new OutputStreamWriter(stream, Charset.forName("cp1251"));
         CSVWriter writer = new CSVWriter(os, ',');
         writer.writeNext(fileHeader);
         List<String[]> vacanciesInString = new ArrayList<>();
+        String resumes = "";
+        for (ResumeDownloadDto o: object.getResumes()) {
+            resumes+=o.toString();
+        }
         vacanciesInString.add(new String[]{
                 object.getUserName(),
-                object.getResumes().toString()
+                resumes
 
         });
         writer.writeAll(vacanciesInString);
