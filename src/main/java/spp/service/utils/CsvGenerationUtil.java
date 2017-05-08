@@ -2,15 +2,17 @@ package spp.service.utils;
 
 
 import au.com.bytecode.opencsv.CSVWriter;
+import org.apache.commons.lang3.StringUtils;
 import spp.dto.download.*;
-;
-import spp.entity.Vacancy;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.nio.charset.Charset;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+import java.util.Optional;
 
 public class CsvGenerationUtil {
 
@@ -64,11 +66,18 @@ public class CsvGenerationUtil {
         writer.writeNext(fileHeader);
         List<String[]> vacanciesInString = new ArrayList<>();
         vacanciesInString.add(new String[]{
-                object.getTitle(),
-                object.getCreationDate().toString(),
-                object.getOwnerName(),
-                object.getAbout(),
-                object.getVacancies().toString()
+                Optional.ofNullable(object.getTitle())
+                        .orElse(StringUtils.EMPTY),
+                Optional.ofNullable(object.getCreationDate())
+                        .map(Date::toString)
+                        .orElse(StringUtils.EMPTY),
+                Optional.ofNullable(object.getOwnerName())
+                        .orElse(StringUtils.EMPTY),
+                Optional.ofNullable(object.getAbout())
+                        .orElse(StringUtils.EMPTY),
+                Optional.ofNullable(object.getVacancies())
+                        .map(List::toString)
+                        .orElse(StringUtils.EMPTY)
 
         });
         writer.writeAll(vacanciesInString);

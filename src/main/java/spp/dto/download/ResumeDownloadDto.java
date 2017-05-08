@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.apache.commons.lang3.StringUtils;
 import spp.entity.Resume;
 import spp.entity.Vacancy;
 
@@ -17,12 +18,12 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 public class ResumeDownloadDto {
-    private String title;
-    private Date creationDate;
-    private String ownerName;
-    private String about;
-    private String expJson;
-    private String skillsJson;
+    private String title = StringUtils.EMPTY;
+    private Date creationDate = new Date();
+    private String ownerName = StringUtils.EMPTY;
+    private String about = StringUtils.EMPTY;
+    private String expJson = StringUtils.EMPTY;
+    private String skillsJson = StringUtils.EMPTY;
 
     public ResumeDownloadDto(String ownerName, Resume resume) {
         this.title = resume.getTitle();

@@ -4,9 +4,11 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.apache.commons.lang3.StringUtils;
 import spp.entity.Project;
 import spp.entity.Vacancy;
 
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
@@ -18,11 +20,11 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 public class ProjectDownloadDto {
-    private String title;
-    private String about;
-    private String ownerName;
-    private Date creationDate;
-    private List<VacancyDownloadDto> vacancies;
+    private String title = StringUtils.EMPTY;
+    private String about  = StringUtils.EMPTY;
+    private String ownerName = StringUtils.EMPTY;
+    private Date creationDate = new Date();
+    private List<VacancyDownloadDto> vacancies = Collections.EMPTY_LIST;
 
     public ProjectDownloadDto(String ownerName, Project project, List<VacancyDownloadDto> vacancies) {
         this.title = project.getTitle();

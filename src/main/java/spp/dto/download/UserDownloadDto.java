@@ -4,7 +4,9 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.apache.commons.lang3.StringUtils;
 
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -15,6 +17,6 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 public class UserDownloadDto {
-    private String userName;
-    private List<ResumeDownloadDto> resumes;
+    private String userName = StringUtils.EMPTY;
+    private List<ResumeDownloadDto> resumes = Collections.emptyList();
 }

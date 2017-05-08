@@ -17,6 +17,7 @@ import spp.service.VacancyService;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 /**
  * Created by admin on 07.05.2017.
@@ -43,6 +44,11 @@ public class DownloadDtoGenerator {
 
     public ProjectDownloadDto getProjectDownloadDtoById(Long id) {
         Project project = projectService.getById(id);
+        try {
+            project.getId();
+        } catch (Exception e) {
+            return new ProjectDownloadDto();
+        }
         User user = userService.getOne(project.getOwnerId());
         List<VacancyDownloadDto> vdd = new ArrayList<>();
         vacancyService.getByOwnerId(id)
@@ -57,6 +63,11 @@ public class DownloadDtoGenerator {
 
     public UserDownloadDto getUserDownloadDtoById(Long id) {
         User user = userService.getOne(id);
+        try {
+            user.getId();
+        } catch (Exception e) {
+            return new UserDownloadDto();
+        }
         List<ResumeDownloadDto> rdd = new ArrayList<>();
         resumeService.getByOwnerId(id)
                 .stream()
@@ -69,6 +80,11 @@ public class DownloadDtoGenerator {
 
     public ResumeDownloadDto getResumeDownloadDtoById(Long id) {
         Resume resume = resumeService.getById(id);
+        try {
+            resume.getId();
+        } catch (Exception e) {
+            return new ResumeDownloadDto();
+        }
         return new ResumeDownloadDto(
                 userService
                         .getOne(resume.getOwnerId())
@@ -79,6 +95,11 @@ public class DownloadDtoGenerator {
 
     public VacancyDownloadDto getVacancyDownloadDtoById(Long id) {
         Vacancy vacancy = vacancyService.getById(id);
+        try {
+            vacancy.getId();
+        } catch (Exception e) {
+            return new VacancyDownloadDto();
+        }
         return new VacancyDownloadDto(
                 userService
                         .getOne(vacancy.getOwnerId())
