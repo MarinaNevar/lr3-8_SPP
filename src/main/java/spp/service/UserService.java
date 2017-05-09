@@ -32,6 +32,6 @@ public class UserService {
     }
 
     public User getOne(Long id) {
-        return userRepository.findOne(id);
+        return userRepository.findById(id);
     }
 }
