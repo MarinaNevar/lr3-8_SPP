@@ -13,4 +13,6 @@ public interface ResumeRepository extends JpaRepository<Resume, Long> {
     List<Resume> findAllByOrderByCreationDateAsc();
 
     List<Resume> findAllByOwnerId(Long id);
+
+    Resume findById(Long id);
 }
