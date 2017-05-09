@@ -1,14 +1,14 @@
 package spp.controller;
 
+import com.itextpdf.text.DocumentException;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.io.InputStreamResource;
-import org.springframework.core.io.Resource;
-import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 import spp.service.download.dto.generator.DownloadDtoGenerator;
 import java.io.*;
 
 import static spp.service.utils.CsvGenerationUtil.*;
+import static spp.service.utils.PdfGenerationUtil.*;
+import static spp.service.utils.XlsGenerationUtil.*;
 
 /**
  * Created by admin on 01.05.2017.
@@ -19,7 +19,8 @@ import static spp.service.utils.CsvGenerationUtil.*;
 public class DownloadController {
 
     private static final String APPLICATION_PDF = "application/pdf";
-    public final static String TEXT_CSV = "text/csv";
+    private final static String TEXT_CSV = "text/csv";
+    private final static String APPLICATION_XLS = "application/vnd.ms-excel";
 
     private final DownloadDtoGenerator generator;
 
@@ -52,11 +53,50 @@ public class DownloadController {
                 ).toByteArray();
     }
 
-    @RequestMapping(value = "/csv/resume/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/csv/resume/{id}", method = RequestMethod.GET,  produces = TEXT_CSV)
     public @ResponseBody
     byte[] downloadCsvResumeById(@PathVariable("id") Long id) throws IOException {
         return generateResumeInCSV(generator
                         .getResumeDownloadDtoById(id)
                 ).toByteArray();
+    }
+
+    @RequestMapping(value = "/pdf/vacancy/{id}", method = RequestMethod.GET,  produces = APPLICATION_PDF)
+    public @ResponseBody
+    byte[] downloadPdfVacancyById(@PathVariable("id") Long id) throws IOException, DocumentException {
+        return getVacancyDocument
+                (generator.getVacancyDownloadDtoById(id))
+                .toByteArray();
+    }
+
+    @RequestMapping(value = "/pdf/user/{id}", method = RequestMethod.GET,  produces = APPLICATION_PDF)
+    public @ResponseBody
+    byte[] downloadPdfUserById(@PathVariable("id") Long id) throws IOException, DocumentException {
+        return getUserDocument(generator
+                .getUserDownloadDtoById(id)
+        ).toByteArray();
+    }
+
+    @RequestMapping(value = "/pdf/project/{id}", method = RequestMethod.GET,  produces = APPLICATION_PDF)
+    public @ResponseBody
+    byte[] downloadPdfProjectById(@PathVariable("id") Long id) throws IOException, DocumentException {
+        return getProjectDocument(generator
+                .getProjectDownloadDtoById(id)
+        ).toByteArray();
+    }
+
+    @RequestMapping(value = "/pdf/resume/{id}", method = RequestMethod.GET,  produces = APPLICATION_PDF)
+    public @ResponseBody
+    byte[] downloadPdfResumeById(@PathVariable("id") Long id) throws IOException, DocumentException {
+        return getResumeDocument(generator
+                .getResumeDownloadDtoById(id)
+        ).toByteArray();
+    }
+
+    @RequestMapping(value = "/xls/vacancy/{id}", method = RequestMethod.GET,  produces = APPLICATION_XLS)
+    public @ResponseBody
+    byte[] downloadXlsVacancyById(@PathVariable("id") Long id) throws IOException, DocumentException {
+        return generateVacanciesInXls(generator.getVacancyDownloadDtoById(id))
+                .toByteArray();
     }
 }
