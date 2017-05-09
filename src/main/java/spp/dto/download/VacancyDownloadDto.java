@@ -31,4 +31,15 @@ public class VacancyDownloadDto {
         this.about = vacancy.getAboutJson();
 
     }
+
+    @Override
+    public String toString() {
+        return "VacancyDownloadDto{" +
+                "ownerName='" + ownerName + '\'' +
+                ", title='" + title + '\'' +
+                ", about='" + about + '\'' +
+                ", projectTitle='" + projectTitle + '\'' +
+                ", creationDate=" + creationDate +
+                '}';
+    }
 }
