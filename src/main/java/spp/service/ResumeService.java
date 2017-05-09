@@ -7,6 +7,7 @@ import spp.repository.ResumeRepository;
 import spp.entity.Resume;
 
 import javax.servlet.http.HttpSession;
+import java.util.Date;
 import java.util.List;
 
 import static com.google.common.primitives.UnsignedInts.min;
@@ -45,6 +46,7 @@ public class ResumeService {
 
     public Resume save(Resume resume, HttpSession session) {
         resume.setOwnerId(userService.getCurrentUser(session).getId());
+        resume.setCreationDate(new Date());
         return resumeRepository.save(resume);
     }
 

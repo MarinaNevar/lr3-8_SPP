@@ -6,6 +6,7 @@ import spp.repository.VacancyRepository;
 import spp.entity.Vacancy;
 
 import javax.servlet.http.HttpSession;
+import java.util.Date;
 import java.util.List;
 
 import static com.google.common.primitives.UnsignedInts.min;
@@ -43,9 +44,10 @@ public class VacancyService {
         return vacancyRepository.findOne(id);
     }
 
-    public Vacancy save(Vacancy project, HttpSession httpSession) {
-        project.setOwnerId(userService.getCurrentUser(httpSession).getId());
-        return vacancyRepository.save(project);
+    public Vacancy save(Vacancy vacancy, HttpSession httpSession) {
+        vacancy.setOwnerId(userService.getCurrentUser(httpSession).getId());
+        vacancy.setCreationDate(new Date());
+        return vacancyRepository.save(vacancy);
     }
 
     public void delete(Long id) {

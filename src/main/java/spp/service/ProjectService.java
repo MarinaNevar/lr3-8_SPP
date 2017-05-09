@@ -6,6 +6,7 @@ import spp.entity.Project;
 import spp.repository.ProjectRepository;
 
 import javax.servlet.http.HttpSession;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -34,6 +35,7 @@ public class ProjectService {
 
     public Project save(Project project, HttpSession httpSession) {
         project.setOwnerId(userService.getCurrentUser(httpSession).getId());
+        project.setCreationDate(new Date());
         return projectRepository.save(project);
     }
 
