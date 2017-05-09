@@ -4,6 +4,7 @@ package service.utils;
  * Created by Дмитрий Криволап on 10.05.2017.
  */
 
+import com.sun.xml.internal.ws.policy.privateutil.PolicyUtils;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -14,6 +15,8 @@ import spp.entity.Vacancy;
 import spp.service.utils.CsvGenerationUtil;
 
 import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -22,6 +25,7 @@ import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 
 public class CsvGenerationUtilTest {
     static Vacancy vacancy ;
@@ -90,5 +94,28 @@ public class CsvGenerationUtilTest {
         assertNotNull(stream);
 
     }
+    @Test(expected = Exception.class)
+    public void ExeptionTest()throws IOException{
+        stream = CsvGenerationUtil.generateVacanciesInCSV(null);
+    }
+    @Test
+    public void CreateFileUserCsv()throws IOException{
+
+        File file=new File("csvUserTest.csv");
+        stream =CsvGenerationUtil.generateUserInCSV(userDownloadDto);
+        stream.writeTo(new FileOutputStream("csvUserTest.csv"));
+        assertTrue(file.exists());
+
+    }
+    @Test
+    public void CreateFileVacancyCsv()throws IOException{
+
+        File file=new File("csvVacancyTest.csv");
+        stream =CsvGenerationUtil.generateVacanciesInCSV(vacancyDownloadDto);
+        stream.writeTo(new FileOutputStream("csvVacancyTest.csv"));
+        assertTrue(file.exists());
+
+    }
+
 
 }
