@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 import spp.entity.Project;
 import spp.repository.ProjectRepository;
 
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 /**
@@ -15,6 +16,9 @@ public class ProjectService {
 
     @Autowired
     private ProjectRepository projectRepository;
+
+    @Autowired
+    private UserService userService;
 
     public List<Project> getAll() {
         return projectRepository.findAll();
@@ -28,7 +32,8 @@ public class ProjectService {
         return projectRepository.findAllByOwnerId(id);
     }
 
-    public Project save(Project project) {
+    public Project save(Project project, HttpSession httpSession) {
+        project.setOwnerId(userService.getCurrentUser(httpSession).getId());
         return projectRepository.save(project);
     }
 

@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 import spp.repository.VacancyRepository;
 import spp.entity.Vacancy;
 
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 import static com.google.common.primitives.UnsignedInts.min;
@@ -16,6 +17,9 @@ import static com.google.common.primitives.UnsignedInts.min;
 public class VacancyService {
 
     private final VacancyRepository vacancyRepository;
+
+    @Autowired
+    private UserService userService;
 
     @Autowired
     public VacancyService(VacancyRepository vacancyRepository) {
@@ -39,7 +43,8 @@ public class VacancyService {
         return vacancyRepository.findOne(id);
     }
 
-    public Vacancy save(Vacancy project) {
+    public Vacancy save(Vacancy project, HttpSession httpSession) {
+        project.setOwnerId(userService.getCurrentUser(httpSession).getId());
         return vacancyRepository.save(project);
     }
 

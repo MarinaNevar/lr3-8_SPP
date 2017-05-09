@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.*;
 import spp.entity.Resume;
 import spp.service.ResumeService;
 
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 /**
@@ -43,8 +44,8 @@ public class ResumeController {
     }
 
     @RequestMapping(value = "/save", method = RequestMethod.POST)
-    public @ResponseBody Resume save(@RequestBody Resume project) {
-        return resumeService.save(project);
+    public @ResponseBody Resume save(@RequestBody Resume project, HttpSession session) {
+        return resumeService.save(project, session);
     }
 
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.DELETE)

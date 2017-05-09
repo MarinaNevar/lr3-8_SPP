@@ -6,6 +6,7 @@ import spp.entity.Vacancy;
 import spp.repository.ResumeRepository;
 import spp.entity.Resume;
 
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 import static com.google.common.primitives.UnsignedInts.min;
@@ -17,6 +18,8 @@ import static com.google.common.primitives.UnsignedInts.min;
 public class ResumeService {
 
     private final ResumeRepository resumeRepository;
+    @Autowired
+    private UserService userService;
 
     @Autowired
     public ResumeService(ResumeRepository resumeRepository) {
@@ -40,7 +43,8 @@ public class ResumeService {
         return resumeRepository.findById(id);
     }
 
-    public Resume save(Resume resume) {
+    public Resume save(Resume resume, HttpSession session) {
+        resume.setOwnerId(userService.getCurrentUser(session).getId());
         return resumeRepository.save(resume);
     }
 

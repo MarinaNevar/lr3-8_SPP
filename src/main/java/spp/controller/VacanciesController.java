@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.*;
 import spp.entity.Vacancy;
 import spp.service.VacancyService;
 
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 /**
@@ -45,8 +46,8 @@ public class VacanciesController {
     }
 
     @RequestMapping(value = "/save", method = RequestMethod.POST)
-    public @ResponseBody Vacancy save(@RequestBody Vacancy vacancy) {
-        return vacancyService.save(vacancy);
+    public @ResponseBody Vacancy save(@RequestBody Vacancy vacancy, HttpSession httpSession) {
+        return vacancyService.save(vacancy, httpSession);
     }
 
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.DELETE)

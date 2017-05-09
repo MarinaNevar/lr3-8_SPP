@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.*;
 import spp.entity.Project;
 import spp.service.ProjectService;
 
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 /**
@@ -34,8 +35,8 @@ public class ProjectController {
     }
 
     @RequestMapping(value = "/save", method = RequestMethod.POST)
-    public @ResponseBody Project save(@RequestBody Project project) {
-        return service.save(project);
+    public @ResponseBody Project save(@RequestBody Project project, HttpSession httpSession) {
+        return service.save(project, httpSession);
     }
 
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.DELETE)
