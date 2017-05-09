@@ -1,7 +1,8 @@
-/*
+
 package spp.service.utils;
 
 import org.apache.poi.hssf.usermodel.*;
+import spp.dto.download.*;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -11,7 +12,7 @@ import java.util.Set;
 
 public class XlsGenerationUtil {
 
-    public static ByteArrayOutputStream generateVacanciesInXls() throws IOException {
+    public static ByteArrayOutputStream generateVacanciesInXls(VacancyDownloadDto object) throws IOException {
         HSSFWorkbook workbook = new HSSFWorkbook();
         HSSFSheet sheet = workbook.createSheet("vacancy");
         HSSFCellStyle headerCellStyle = workbook.createCellStyle();
@@ -22,70 +23,43 @@ public class XlsGenerationUtil {
         HSSFRow row = sheet.createRow(0);
         HSSFCell cell = row.createCell(0);
         cell.setCellStyle(headerCellStyle);
-        cell.setCellValue(new HSSFRichTextString("№"));
+        cell.setCellValue(new HSSFRichTextString("ownerName"));
         cell = row.createCell(1);
         cell.setCellStyle(headerCellStyle);
-        cell.setCellValue(new HSSFRichTextString("Employer"));
+        cell.setCellValue(new HSSFRichTextString("title"));
         cell = row.createCell(2);
         cell.setCellStyle(headerCellStyle);
-        cell.setCellValue(new HSSFRichTextString("Title"));
+        cell.setCellValue(new HSSFRichTextString("about"));
         cell = row.createCell(3);
         cell.setCellStyle(headerCellStyle);
-        cell.setCellValue(new HSSFRichTextString("Summary"));
+        cell.setCellValue(new HSSFRichTextString("projectTitle"));
         cell = row.createCell(4);
         cell.setCellStyle(headerCellStyle);
-        cell.setCellValue(new HSSFRichTextString("Salary"));
-        cell = row.createCell(5);
-        cell.setCellStyle(headerCellStyle);
-        cell.setCellValue(new HSSFRichTextString("Required skills"));
-        cell = row.createCell(6);
-        cell.setCellStyle(headerCellStyle);
-        cell.setCellValue(new HSSFRichTextString("Required experience"));
-        VacancyDao vacancyDao = new VacancyDao();
+        cell.setCellValue(new HSSFRichTextString("creationDate"));
 
-        List<Vacancy> vacancyList = vacancyDao.getAllVacancies();
-        for (int i = 0; i < vacancyList.size(); i++) {
-            row = sheet.createRow(i + 1);
+        row = sheet.createRow(1);
+        cell = row.createCell(0);
 
-            Vacancy vacancy = vacancyList.get(i);
-            cell = row.createCell(0);
-            cell.setCellValue(i + 1);
-            cell = row.createCell(1);
-            cell.setCellValue(vacancy.getEmployer().getEmail());
-            cell = row.createCell(2);
-            cell.setCellValue(vacancy.getTitle());
-            cell = row.createCell(3);
-            cell.setCellValue(vacancy.getSummary() != null ? vacancy.getSummary() : "");
-            cell = row.createCell(4);
-            cell.setCellValue(vacancy.getSalary() != null ? vacancy.getSalary() : "");
-            cell = row.createCell(5);
-            cell.setCellValue(vacancy.getRequiredSkills() != null ? vacancy.getRequiredSkills() : "");
-            cell = row.createCell(6);
-            cell.setCellValue(vacancy.getRequiredExperience() != null ? vacancy.getRequiredExperience() : "");
-        }
+        cell.setCellValue("qwerty");
 
 
-        HSSFCellStyle style = workbook.createCellStyle();
-        style.setWrapText(true);
-        sheet.autoSizeColumn(0);
-        int[] columnWidths = new int[]{2, 20, 20, 30, 10, 50, 50};
-        for (int i = 0; i < columnWidths.length; i++) {
-            columnWidths[i] = columnWidths[i] * 256; //column width is measured in 1/256 characters sizes
-        }
-        for (int j = 0; j <= vacancyList.size(); j++) {
-            row = sheet.getRow(j);
-            row.setRowStyle(style);
-            for (int i = 0; i < 7; i++) {
-                row.getCell(i).setCellStyle(style);
-                sheet.autoSizeColumn(i);
-                sheet.setColumnWidth(i, columnWidths[i]);
-            }
-        }
+        row = sheet.createRow(1);
+        cell = row.createCell(0);
+        cell.setCellValue(object.getOwnerName());
+        cell = row.createCell(1);
+        cell.setCellValue(object.getTitle());
+        cell = row.createCell(2);
+        cell.setCellValue(object.getAbout());
+        cell = row.createCell(3);
+        cell.setCellValue(object.getProjectTitle());
+        cell = row.createCell(4);
+        cell.setCellValue(object.getCreationDate().toString());
+
         ByteArrayOutputStream stream = new ByteArrayOutputStream();
         workbook.write(stream);
         return stream;
     }
-
+/*
     public static ByteArrayOutputStream generateResumesInXls() throws IOException {
         HSSFWorkbook workbook = new HSSFWorkbook();
         HSSFSheet sheet = workbook.createSheet("resumes");
@@ -422,6 +396,6 @@ public class XlsGenerationUtil {
         workbook.write(stream);
         return stream;
     }
-
-}
 */
+}
+
