@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import spp.entity.User;
 import spp.service.UserService;
 
@@ -19,7 +20,7 @@ public class UserController {
     private UserService userService;
 
     @RequestMapping(value = "/get/{id}", method = RequestMethod.GET)
-    public User getOneById(@PathVariable("id") Long id) {
+    public @ResponseBody User getOneById(@PathVariable("id") Long id) {
         return userService.getOne(id);
     }
 }
