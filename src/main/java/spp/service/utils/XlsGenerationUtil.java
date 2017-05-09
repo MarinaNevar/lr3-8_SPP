@@ -59,6 +59,7 @@ public class XlsGenerationUtil {
         workbook.write(stream);
         return stream;
     }
+
 /*
     public static ByteArrayOutputStream generateResumesInXls() throws IOException {
         HSSFWorkbook workbook = new HSSFWorkbook();
