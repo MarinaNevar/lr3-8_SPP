@@ -11,4 +11,6 @@ import java.util.List;
  */
 public interface ProjectRepository extends JpaRepository<Project, Long> {
     List<Project> findAllByOwnerId(Long id);
+
+    Project findById(Long id);
 }

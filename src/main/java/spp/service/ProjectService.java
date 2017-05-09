@@ -21,7 +21,7 @@ public class ProjectService {
     }
 
     public Project getById(Long id) {
-        return projectRepository.getOne(id);
+        return projectRepository.findById(id);
     }
 
     public List<Project> getAllByOwnerId(Long id) {

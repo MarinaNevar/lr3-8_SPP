@@ -37,7 +37,7 @@ public class ResumeService {
     }
 
     public Resume getById(Long id) {
-        return resumeRepository.findOne(id);
+        return resumeRepository.findById(id);
     }
 
     public Resume save(Resume resume) {

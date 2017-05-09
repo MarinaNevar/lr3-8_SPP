@@ -30,6 +30,7 @@ public class AuthService {
         if (userRepository.findByName(user.getName()) == null) {
             user.setAuthorityId(1);
             User savedUser = userRepository.save(user);
+            httpSessionService.setDataToSession(httpSession, new SessionDTO("currentUserId", savedUser.getId()));
             httpSessionService.setDataToSession(httpSession, new SessionDTO("currentUserName", savedUser.getName()));
             httpSessionService.setDataToSession(httpSession, new SessionDTO("currentUserAuthorityID", savedUser.getAuthorityId()));
             return 200;
@@ -41,6 +42,7 @@ public class AuthService {
     public int validateUser(HttpSession httpSession, User user) {
         User dbUser = userRepository.findByName(user.getName());
         if (dbUser != null && Objects.equals(user.getPassword(), dbUser.getPassword())) {
+            httpSessionService.setDataToSession(httpSession, new SessionDTO("currentUserId", dbUser.getId()));
             httpSessionService.setDataToSession(httpSession, new SessionDTO("currentUserName", dbUser.getName()));
             httpSessionService.setDataToSession(httpSession, new SessionDTO("currentUserAuthorityID", dbUser.getAuthorityId()));
             return 200;

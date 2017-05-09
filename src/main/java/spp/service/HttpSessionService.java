@@ -20,7 +20,9 @@ public class HttpSessionService {
     @Nullable
     public UserDto getUserFromSession(HttpSession httpSession) {
         if (httpSession.getAttribute("currentUserName") != null) {
-            return new UserDto(httpSession.getAttribute("currentUserName").toString(),
+            return new UserDto(
+                    (Long) httpSession.getAttribute("currentUserId"),
+                    httpSession.getAttribute("currentUserName").toString(),
                     (Long) httpSession.getAttribute("currentUserAuthorityID"));
         }
         return null;

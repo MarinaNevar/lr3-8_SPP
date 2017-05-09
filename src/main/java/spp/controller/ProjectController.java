@@ -24,12 +24,12 @@ public class ProjectController {
     }
 
     @RequestMapping(value = "/get/all/{id}", method = RequestMethod.GET)
-    public List<Project> getAllByOwnerId(@PathVariable("id") Long id) {
+    public @ResponseBody List<Project> getAllByOwnerId(@PathVariable("id") Long id) {
         return service.getAllByOwnerId(id);
     }
 
     @RequestMapping(value = "/get/{id}", method = RequestMethod.GET)
-    public Project getOneById(@PathVariable("id") Long id) {
+    public @ResponseBody Project getOneById(@PathVariable("id") Long id) {
         return service.getById(id);
     }
 

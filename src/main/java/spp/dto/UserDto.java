@@ -13,6 +13,7 @@ import java.io.Serializable;
 @Getter
 @Setter
 public class UserDto implements Serializable{
+    private Long id;
     private String name;
     private Long authorityId;
 }
