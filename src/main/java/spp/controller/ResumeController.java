@@ -33,12 +33,12 @@ public class ResumeController {
     }
 
     @RequestMapping(value = "/get/all/{id}", method = RequestMethod.GET)
-    public List<Resume> getAllByOwnerId(@PathVariable("id") Long id) {
+    public @ResponseBody List<Resume> getAllByOwnerId(@PathVariable("id") Long id) {
         return resumeService.getByOwnerId(id);
     }
 
     @RequestMapping(value = "/get/{id}", method = RequestMethod.GET)
-    public Resume getOneById(@PathVariable("id") Long id) {
+    public @ResponseBody Resume getOneById(@PathVariable("id") Long id) {
         return resumeService.getById(id);
     }
 

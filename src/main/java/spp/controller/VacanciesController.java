@@ -35,12 +35,12 @@ public class VacanciesController {
 
 
     @RequestMapping(value = "/get/all/{id}", method = RequestMethod.GET)
-    public List<Vacancy> getAllByOwnerId(@PathVariable("id") Long id) {
+    public @ResponseBody List<Vacancy> getAllByOwnerId(@PathVariable("id") Long id) {
         return vacancyService.getByOwnerId(id);
     }
 
     @RequestMapping(value = "/get/{id}", method = RequestMethod.GET)
-    public Vacancy getOneById(@PathVariable("id") Long id) {
+    public @ResponseBody Vacancy getOneById(@PathVariable("id") Long id) {
         return vacancyService.getById(id);
     }
 
