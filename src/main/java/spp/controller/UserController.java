@@ -16,8 +16,12 @@ import spp.service.UserService;
 @RequestMapping("/user")
 public class UserController {
 
+    private final UserService userService;
+
     @Autowired
-    private UserService userService;
+    public UserController(UserService userService) {
+        this.userService = userService;
+    }
 
     @RequestMapping(value = "/get/{id}", method = RequestMethod.GET)
     public @ResponseBody User getOneById(@PathVariable("id") Long id) {

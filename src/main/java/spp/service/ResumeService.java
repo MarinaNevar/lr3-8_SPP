@@ -19,12 +19,12 @@ import static com.google.common.primitives.UnsignedInts.min;
 public class ResumeService {
 
     private final ResumeRepository resumeRepository;
-    @Autowired
-    private UserService userService;
+    private final UserService userService;
 
     @Autowired
-    public ResumeService(ResumeRepository resumeRepository) {
+    public ResumeService(ResumeRepository resumeRepository, UserService userService) {
         this.resumeRepository = resumeRepository;
+        this.userService = userService;
     }
 
     public List<Resume> getAll() {

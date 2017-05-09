@@ -40,6 +40,11 @@ public class VacanciesController {
         return vacancyService.getByOwnerId(id);
     }
 
+    @RequestMapping(value = "/get/project/{id}", method = RequestMethod.GET)
+    public @ResponseBody List<Vacancy> getAllByProjectId(@PathVariable("id") Long id) {
+        return vacancyService.getByProjectId(id);
+    }
+
     @RequestMapping(value = "/get/{id}", method = RequestMethod.GET)
     public @ResponseBody Vacancy getOneById(@PathVariable("id") Long id) {
         return vacancyService.getById(id);

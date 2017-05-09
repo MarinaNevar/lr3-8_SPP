@@ -19,12 +19,12 @@ public class VacancyService {
 
     private final VacancyRepository vacancyRepository;
 
-    @Autowired
-    private UserService userService;
+    private final UserService userService;
 
     @Autowired
-    public VacancyService(VacancyRepository vacancyRepository) {
+    public VacancyService(VacancyRepository vacancyRepository, UserService userService) {
         this.vacancyRepository = vacancyRepository;
+        this.userService = userService;
     }
 
     public List<Vacancy> getAll() {
@@ -38,6 +38,10 @@ public class VacancyService {
 
     public List<Vacancy> getByOwnerId(Long id) {
         return vacancyRepository.findAllByOwnerId(id);
+    }
+
+    public List<Vacancy> getByProjectId(Long id) {
+        return vacancyRepository.findAllByProjectId(id);
     }
 
     public Vacancy getById(Long id) {

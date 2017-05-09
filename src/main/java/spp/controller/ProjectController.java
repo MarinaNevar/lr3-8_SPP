@@ -16,8 +16,12 @@ import java.util.List;
 @RequestMapping("/project")
 public class ProjectController {
 
+    private final ProjectService service;
+
     @Autowired
-    private ProjectService service;
+    public ProjectController(ProjectService service) {
+        this.service = service;
+    }
 
     @RequestMapping(value = "/get/all", method = RequestMethod.GET)
     public @ResponseBody List<Project> getAll() {

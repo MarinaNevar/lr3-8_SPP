@@ -12,4 +12,5 @@ public interface VacancyRepository extends JpaRepository<Vacancy, Long> {
 
     List<Vacancy> findAllByOrderByCreationDateAsc();
     List<Vacancy> findAllByOwnerId(Long id);
+    List<Vacancy> findAllByProjectId(Long id);
 }

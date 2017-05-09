@@ -21,8 +21,12 @@ public class DownloadController {
     private static final String APPLICATION_PDF = "application/pdf";
     public final static String TEXT_CSV = "text/csv";
 
+    private final DownloadDtoGenerator generator;
+
     @Autowired
-    private DownloadDtoGenerator generator;
+    public DownloadController(DownloadDtoGenerator generator) {
+        this.generator = generator;
+    }
 
     @RequestMapping(value = "/csv/vacancy/{id}", method = RequestMethod.GET,  produces = TEXT_CSV)
     public @ResponseBody

@@ -15,11 +15,15 @@ import java.util.List;
 @Service
 public class ProjectService {
 
-    @Autowired
-    private ProjectRepository projectRepository;
+    private final ProjectRepository projectRepository;
+
+    private final UserService userService;
 
     @Autowired
-    private UserService userService;
+    public ProjectService(ProjectRepository projectRepository, UserService userService) {
+        this.projectRepository = projectRepository;
+        this.userService = userService;
+    }
 
     public List<Project> getAll() {
         return projectRepository.findAll();
