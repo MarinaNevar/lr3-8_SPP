@@ -2,7 +2,7 @@ package spp.service;
 
 import com.sun.istack.internal.Nullable;
 import org.springframework.stereotype.Service;
-import spp.dto.SessionDTO;
+import spp.dto.SessionDto;
 import spp.dto.UserDto;
 
 import javax.servlet.http.HttpSession;
@@ -13,8 +13,8 @@ import javax.servlet.http.HttpSession;
 @Service
 public class HttpSessionService {
 
-    public void setDataToSession(HttpSession httpSession, SessionDTO sessionDTO) {
-        httpSession.setAttribute(sessionDTO.getName(), sessionDTO.getBody());
+    public void setDataToSession(HttpSession httpSession, SessionDto sessionDto) {
+        httpSession.setAttribute(sessionDto.getName(), sessionDto.getBody());
     }
 
     @Nullable

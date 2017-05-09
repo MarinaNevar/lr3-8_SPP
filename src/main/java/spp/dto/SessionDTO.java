@@ -2,6 +2,7 @@ package spp.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 /**
@@ -10,7 +11,8 @@ import lombok.Setter;
 @AllArgsConstructor
 @Getter
 @Setter
-public class SessionDTO {
+@NoArgsConstructor
+public class SessionDto {
 
     private String name;
     private Object body;
