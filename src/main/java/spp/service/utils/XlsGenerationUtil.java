@@ -177,8 +177,5 @@ public class XlsGenerationUtil {
         workbook.write(stream);
         return stream;
     }
-
-    //TODO generateStatisticInXls
-
 }
 
