@@ -13,6 +13,26 @@ public class VacancyDownloadDtoTest {
     }
 
     @Test
+    public void setOwabdhnerName() throws Exception {
+    }
+
+    @Test
+    public void setOasdwnerName() throws Exception {
+    }
+
+    @Test
+    public void setOwnerNasghame() throws Exception {
+    }
+
+    @Test
+    public void setOwnerNamgasdge() throws Exception {
+    }
+
+    @Test
+    public void seasfasftOwnerName() throws Exception {
+    }
+
+    @Test
     public void setTitle() throws Exception {
     }
 

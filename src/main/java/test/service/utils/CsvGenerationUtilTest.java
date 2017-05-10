@@ -69,7 +69,7 @@ public class CsvGenerationUtilTest {
         stream = CsvGenerationUtil.generateVacanciesInCSV(vacancyDownloadDto);
         String result = stream.toString();
         assertEquals("\"OwnerName\",\"Title\",\"About\",\"ProjectTitle\",\"CreationDate\"\n" +
-                "\"dima\",\"Java Junior\",\"good\",\"bank\",\"Wed May 10 01:21:24 MSK 2017\"\n",result);
+                "\"dima\",\"Java Junior\",\"good\",\"bank\",\"" + new Date().toString() + "\"\n",result);
 
     }
 
@@ -78,7 +78,7 @@ public class CsvGenerationUtilTest {
         stream = CsvGenerationUtil.generateUserInCSV(userDownloadDto);
         String result = stream.toString();
         assertEquals("\"UserName\",\"resumes\"\n" +
-                "\"dima\",\"ResumeDownloadDto{title='rdto1', creationDate=Wed May 10 01:42:33 MSK 2017, ownerName='rdto1', about='rdto1', expJson='rdto1', skillsJson='rdto1'}ResumeDownloadDto{title='rdto2', creationDate=Wed May 10 01:42:33 MSK 2017, ownerName='rdto2', about='rdto2', expJson='rdto2', skillsJson='rdto2'}ResumeDownloadDto{title='rdto3', creationDate=Wed May 10 01:42:33 MSK 2017, ownerName='rdto3', about='rdto3', expJson='rdto3', skillsJson='rdto3'}\"\n",result);
+                "\"dima\",\"ResumeDownloadDto{title='rdto1', creationDate=" + new Date().toString() + ", ownerName='rdto1', about='rdto1', expJson='rdto1', skillsJson='rdto1'}ResumeDownloadDto{title='rdto2', creationDate="+ new Date().toString() +", ownerName='rdto2', about='rdto2', expJson='rdto2', skillsJson='rdto2'}ResumeDownloadDto{title='rdto3', creationDate=" + new Date().toString() + ", ownerName='rdto3', about='rdto3', expJson='rdto3', skillsJson='rdto3'}\"\n",result);
 
     }
 
