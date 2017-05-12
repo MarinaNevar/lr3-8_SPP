@@ -49,10 +49,10 @@ public class PdfGenerationUtilTest {
 
     }
     @Test
-    public void CreateFileVacancyPdf()throws IOException{
+    public void CreateFileVacancyPdf()throws Exception{
 
         File file=new File("csvVacancyTest.pdf");
-        stream = CsvGenerationUtil.generateVacanciesInCSV(vacancyDownloadDto);
+        stream = PdfGenerationUtil.getVacancyDocument(vacancyDownloadDto);
         stream.writeTo(new FileOutputStream("csvVacancyTest.pdf"));
         assertTrue(file.exists());
 
