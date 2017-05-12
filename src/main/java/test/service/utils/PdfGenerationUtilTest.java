@@ -1,25 +1,19 @@
-package service.utils;
+package test.service.utils;
 
 import com.itextpdf.text.DocumentException;
 import org.junit.Before;
-import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
-import spp.dto.download.ResumeDownloadDto;
-import spp.dto.download.UserDownloadDto;
 import spp.dto.download.VacancyDownloadDto;
 import spp.entity.Vacancy;
-import spp.service.utils.CsvGenerationUtil;
 import spp.service.utils.PdfGenerationUtil;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Date;
 
-import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 

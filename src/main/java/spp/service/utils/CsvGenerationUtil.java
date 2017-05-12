@@ -15,6 +15,7 @@ import java.util.List;
 import java.util.Optional;
 
 public class CsvGenerationUtil {
+    private CsvGenerationUtil() {}
 
     public static ByteArrayOutputStream generateVacanciesInCSV(VacancyDownloadDto object) throws IOException {
         String[] fileHeader = {"OwnerName", "Title", "About", "ProjectTitle","CreationDate"};

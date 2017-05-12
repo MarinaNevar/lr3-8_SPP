@@ -99,4 +99,28 @@ public class DownloadController {
         return generateVacanciesInXls(generator.getVacancyDownloadDtoById(id))
                 .toByteArray();
     }
+
+    @RequestMapping(value = "/xls/user/{id}", method = RequestMethod.GET,  produces = APPLICATION_XLS)
+    public @ResponseBody
+    byte[] downloadXlsUserById(@PathVariable("id") Long id) throws IOException, DocumentException {
+        return generateUserInXls(generator
+                .getUserDownloadDtoById(id)
+        ).toByteArray();
+    }
+
+    @RequestMapping(value = "/xls/project/{id}", method = RequestMethod.GET,  produces = APPLICATION_XLS)
+    public @ResponseBody
+    byte[] downloadXlsProjectById(@PathVariable("id") Long id) throws IOException, DocumentException {
+        return generateProjectInXls(generator
+                .getProjectDownloadDtoById(id)
+        ).toByteArray();
+    }
+
+    @RequestMapping(value = "/xls/resume/{id}", method = RequestMethod.GET,  produces = APPLICATION_XLS)
+    public @ResponseBody
+    byte[] downloadXlsResumeById(@PathVariable("id") Long id) throws IOException, DocumentException {
+        return generateResumeInXls(generator
+                .getResumeDownloadDtoById(id)
+        ).toByteArray();
+    }
 }
