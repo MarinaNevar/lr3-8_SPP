@@ -11,6 +11,7 @@ import java.util.Optional;
 import java.util.Set;
 
 public class XlsGenerationUtil {
+    private XlsGenerationUtil() {}
 
     public static ByteArrayOutputStream generateVacanciesInXls(VacancyDownloadDto object) throws IOException {
         HSSFWorkbook workbook = new HSSFWorkbook();

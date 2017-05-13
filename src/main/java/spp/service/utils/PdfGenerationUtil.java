@@ -11,7 +11,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class PdfGenerationUtil {
-
+    private PdfGenerationUtil() {}
 
     public static ByteArrayOutputStream getVacancyDocument(VacancyDownloadDto object) throws DocumentException, IOException {
             ByteArrayOutputStream stream= new ByteArrayOutputStream();;
